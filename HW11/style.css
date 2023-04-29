@@ -1,0 +1,39 @@
+
+div{
+  margin: 20px;
+}
+button{
+  margin: 10px;
+}
+
+.orderForm{
+  display: none;
+}
+.pizza{
+  display: flex;
+}
+
+
+.quantityOfPizza{
+  margin: 0 10px;
+}
+
+.plus{
+  margin: 0;
+}
+
+.minus{
+  margin: 0 0 0 5px;
+}
+
+.quantityOfPizza1{
+  margin: 0 10px;
+}
+
+.plus1{
+  margin: 0;
+}
+
+.minus1{
+  margin: 0 0 0 5px;
+}

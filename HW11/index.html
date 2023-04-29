@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form class="loginForm" action="#">
+    <div>
+      <label for="login">login</label>
+      <input type="text" class="login" value="1">
+    </div>
+    <div>
+      <label for="password">password</label>
+      <input type="number" class="password" value="1">
+    </div>
+    <button type="submit" class="submit">Ok</button>
+  </form>
+  <!--  -->
+  <form class="orderForm" action="#">
+    <div class="pizza">
+      <label for="typeOfPizza">Choose pizza</label>
+      <input type="text" class="typeOfPizza" list="optionOfPizza">
+      <datalist id ="optionOfPizza">
+        <option value="Мисливська">
+        <option value="Куряча">
+        <option value="Морська">
+        <option value="Кастомна"></option>
+      </datalist>
+      <button class="minus">-</button>
+      <span class="quantityOfPizza">1</span>
+      <button class="plus">+</button>
+      
+    </div>
+    <div class="pizza">
+      <label for="typeOfPizza1">Choose pizza</label>
+      <input type="text" class="typeOfPizza1" list="optionOfPizza">
+      <button class="minus1">-</button>
+      <span class="quantityOfPizza1">1</span>
+      <button class="plus1">+</button>
+    </div>
+    <button class="createOrder" disabled>Ok</button>
+    <div class="price"></div>
+  </form>
+</body>
+</html>
