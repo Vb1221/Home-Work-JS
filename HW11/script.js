@@ -3,8 +3,7 @@ window.onload = () => {
   let passwordInput = document.querySelector('.password')
   let loginForm = document.querySelector('.loginForm')
   let orderForm = document.querySelector('.orderForm')
-  let subBtn = document.querySelector('.submit')
-  
+  let newPizzaBtn = document.querySelector('.newPizza')
 
   let adminData = {
     login: '1',     // user
@@ -14,132 +13,173 @@ window.onload = () => {
   loginForm.onsubmit = () =>{
     if (loginInput.value == adminData.login && passwordInput.value == adminData.password){
       loginForm.style.display = 'none'
-      orderForm.style.display = 'block'
+      orderForm.style.display = 'flex'
+      newPizzaBtn.style.display = 'block'
+
     }
     else{
       alert('Try again')
     }
   }
 
+  /////////////////////////////////////////////////////
+
+  let body = document.querySelector('body')
+
   let variablesOfPizza = [
     {name: 'Мисливська',
-    price: 120},
-    {name: 'Куряча',
-    price: 110},
-    {name: 'Морська',
-    price: 150},
-    {name: 'Кастомна',
-    price: 80}
-  ]
-
-  let customsIng = [
-    {name: 'Помідори',
-      price: 15},
-    {name: 'Ковбаски',
-      price: 20},
-    {name: 'Ананаси',
-      price: 30},
-    {name: 'Курятина',
-      price: 25}
+    priceS: 120,
+    priceM: 130,
+    priceL: 140},
+    {name: 'Тропічна',
+    priceS: 110,
+    priceM: 120,
+    priceL: 130},
+    {name: 'З морепродуктами',
+    priceS: 150,
+    priceM: 160,
+    priceL: 170}
   ]
 
   let plusBtn = document.querySelector('.plus')
-  let quantityEl = document.querySelector('.quantityOfPizza')
   let minusBtn = document.querySelector('.minus')
-  let plusBtn1 = document.querySelector('.plus1')
-  let quantityEl1 = document.querySelector('.quantityOfPizza1')
-  let minusBtn1 = document.querySelector('.minus1')
-  let quantity = 1
-  let quantity1 = 1
 
-  plusBtn.onclick = () => {
-    quantity++ 
-    quantityEl.innerText = quantity;
-  }
-  minusBtn.onclick = () =>{
-    quantity-- 
-    quantityEl.innerText = quantity;
-    if (quantity < 0 ){
-      quantity = 0
-      quantityEl.innerText = quantity;
-    }
-  }
-
-
-  plusBtn1.onclick = () => {
-    quantity1++ 
-    quantityEl1.innerText = quantity1;
-  }
-  minusBtn1.onclick = () =>{
-    quantity1-- 
-    quantityEl1.innerText = quantity1;
-    if (quantity1 < 0 ){
-      quantity1 = 0
-      quantityEl1.innerText = quantity1;
-    }
-  }
-
-/////////////////////////////////////////////
-
+  let quantityEl = document.querySelector('.quantityOfPizza')
+ 
   let inputPizza = document.querySelector('.typeOfPizza')
-  let inputPizza1 = document.querySelector('.typeOfPizza1')
-  let pizzaDiv = document.querySelector('.pizza')
+  
+  let orderBtn = document.querySelector('.createOrder')
+
+  let priceSpan = document.querySelector('.priceOfPizza')
+
+  let quantity = 1
 
 
-  let priceDiv = document.querySelector('.price')  // orderForm
-  let price1 = 0
-  let price2 = 0
-  let sumPrice = 0
 
-  function chosePizza(){
-    for(let element of variablesOfPizza){
-      if(inputPizza.value === element.name){
-        price1 = element.price
+  let clickSize
+
+  let sizeDiv = document.querySelector('.sizePizza')
+  let radioInput = document.querySelectorAll('.radio')
+
+
+  sizeDiv.onclick = function(){
+    for (let i = 0; i < radioInput.length; i++){
+      if (radioInput[i].checked){
+        clickSize = radioInput[i].value;
+        // console.log(clickSize)
+        sizeDiv.dispatchEvent(new Event('change'));
+        break
+      }
+         
+    }
+  }
+  
+  // inputPizza.onchange = function(){
+  //   for (let i = 0; i < variablesOfPizza.length; i++){
+  //     if(this.value == variablesOfPizza[i].name){
+  //       priceSpan.innerHTML = `${variablesOfPizza[i][clickSize]} грн`
+  //     }
+  //   }
+  //   }
+  function disabledBtn(){
+    if (totalSum > 0){
+      orderBtn.removeAttribute('disabled')
+    }else if (totalSum == 0){orderBtn.setAttribute('disabled', 'disabled')}
+  }
+  
+  function checkPrice(){
+    for (let i = 0; i < variablesOfPizza.length; i++){
+      if(inputPizza.value == variablesOfPizza[i].name){
+        priceSpan.innerHTML = variablesOfPizza[i][clickSize] * quantity
       }
     }
-    price1 = price1 * quantity
-    return price1
+    disabledBtn()
   }
 
-  function chosePizza1(){
-    for(let element of variablesOfPizza){
-      if(inputPizza1.value === element.name){
-        price2 = element.price
-      }
+  sizeDiv.addEventListener('change', function() {
+    checkPrice()
+  });
+
+  let totalOrderDiv = document.querySelector('.totalOrder')
+  let p = document.createElement('p')
+  let totalSum = 0
+  let totalSumP = document.createElement('p')
+
+  newPizzaBtn.onclick = () =>{
+    let pizzaSize 
+    if (clickSize == 'priceS'){
+      pizzaSize = 'Маленька'
+    }else if (clickSize == "priceM"){
+      pizzaSize = 'Середня'
+    }else if (clickSize == "priceL"){
+      pizzaSize = 'Велика'
     }
-      price2 = price2 * quantity1
-      return price2
-      
+
+    totalSum = totalSum + Number(priceSpan.innerHTML)
+    let p = document.createElement('p')
+    let removeBtn = document.createElement('button')
+    removeBtn.innerHTML = 'Delete'
+   
+    totalSumP.innerHTML = `До сплати ${totalSum} грн`
+    p.innerText = `${quantity} ${inputPizza.value}, ${pizzaSize} , ${Number(priceSpan.innerHTML)}`
+    totalOrderDiv.appendChild(p)
+    totalOrderDiv.appendChild(removeBtn)
+    totalOrderDiv.appendChild(totalSumP)
+    disabledBtn()
+    inputPizza.value = ''
+    let arrPrice = [priceSpan.innerHTML]
+    priceSpan.innerHTML = 0
+    quantityEl.innerText = 1
+
+    removeBtn.onclick = function(){
+      totalSum = totalSum - arrPrice
+      totalSumP.innerHTML = `До сплати ${totalSum} грн`
+      p.remove()
+      removeBtn.remove()
+      // console.log(arrPrice)
+      disabledBtn()
+    }
+
   }
-  function returnSumPrice(){
-    chosePizza()
-    chosePizza1()
-    sumPrice = price1 + price2
-    priceDiv.innerHTML = `Замовлення ${inputPizza.value} та ${inputPizza1.value} буде коштувати ${sumPrice}`
+  orderForm.addEventListener('submit', function(event){
+    event.preventDefault()
+    plusBtn.onclick = () => {
+      quantity++ 
+      quantityEl.innerText = quantity;
+      checkPrice()
+    }
+    minusBtn.onclick = () =>{
+      quantity-- 
+      quantityEl.innerText = quantity;
+      if (quantity < 0 ){
+        quantity = 0
+        quantityEl.innerText = quantity;
+        priceSpan.innerHTML = variablesOfPizza[i][clickSize] * quantity
+      }
+      checkPrice()
+    }
+  })
+
+  let finalForm = document.querySelector('.finalForm')
+
+  orderBtn.onclick = function(){
+    orderForm.style.display = 'none'
+    newPizzaBtn.style.display = 'none'
+    finalForm.style.display = 'block'
   }
 
-  function customPizza(){
-    let customInput = document.createElement('input')
-    customInput.setAttribute('list', 'customList')
-    let customDataList = document.createElement('datalist')
-    customDataList.id ='customList'
-    customsIng.forEach((ing) =>{
-      let ingOptions = document.createElement('option')
-      ingOptions.value = ing.name
-      customDataList.appendChild(ingOptions)
-    })
-    customInput.appendChild(customDataList)
-    pizzaDiv.appendChild(customInput)
+  let deliveryRadioInput = document.querySelector('.deliveryRadio')
+  let adressInput = document.querySelector('.deliveryInput')
+
+  deliveryRadioInput.addEventListener('change', function() {
+    if (this.checked) {
+      adressInput.removeAttribute('disabled')
+    } else {
+      adressInput.setAttribute('disabled', 'disabled')
+    }
+  });
+  
+  
   }
 
-  orderForm.appendChild(priceDiv)
-  inputPizza.addEventListener('change', returnSumPrice)
-  inputPizza1.addEventListener('change', returnSumPrice) //mouseover
-  plusBtn1.addEventListener('click', returnSumPrice)
-  plusBtn.addEventListener('click', returnSumPrice)
-  minusBtn1.addEventListener('click', returnSumPrice)
-  minusBtn.addEventListener('click', returnSumPrice)
 
-
-
-}

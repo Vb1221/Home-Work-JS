@@ -1,9 +1,6 @@
 
-div{
-  margin: 20px;
-}
-button{
-  margin: 10px;
+.newPizza{
+  display: none;
 }
 
 .orderForm{
@@ -11,29 +8,22 @@ button{
 }
 .pizza{
   display: flex;
+  width: 30%;
+  flex-direction: column;
+  border: 2px solid green;
+  text-align: center;
 }
 
-
-.quantityOfPizza{
-  margin: 0 10px;
+.createOrder{
+  position: absolute;
+  bottom: 10%;
+  left: 13%;
+  width: 100px;
 }
-
-.plus{
-  margin: 0;
+.newPizza{
+  margin: 20px;
+  margin-left: 13%;
 }
-
-.minus{
-  margin: 0 0 0 5px;
-}
-
-.quantityOfPizza1{
-  margin: 0 10px;
-}
-
-.plus1{
-  margin: 0;
-}
-
-.minus1{
-  margin: 0 0 0 5px;
+.finalForm{
+  display: none;
 }

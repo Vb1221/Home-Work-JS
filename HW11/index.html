@@ -9,42 +9,59 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form class="loginForm" action="#">
+  <form class="loginForm"  action="#">
     <div>
       <label for="login">login</label>
       <input type="text" class="login" value="1">
     </div>
     <div>
       <label for="password">password</label>
-      <input type="number" class="password" value="1">
+      <input type="password" class="password" value="1">
     </div>
     <button type="submit" class="submit">Ok</button>
   </form>
   <!--  -->
+
+  <button class="newPizza">Add Pizza</button>
   <form class="orderForm" action="#">
     <div class="pizza">
       <label for="typeOfPizza">Choose pizza</label>
       <input type="text" class="typeOfPizza" list="optionOfPizza">
+      <div class="sizePizza">
+        <label for="radio">S</label>
+        <input type="radio" name='size' class="radio" value="priceS">
+        <label for="radio">M</label>
+        <input type="radio" name='size' class="radio" value="priceM">
+        <label for="radio">L</label>
+        <input type="radio" name='size' class="radio" value="priceL">
+      </div>
       <datalist id ="optionOfPizza">
         <option value="Мисливська">
-        <option value="Куряча">
-        <option value="Морська">
-        <option value="Кастомна"></option>
+        <option value="Тропічна">
+        <option value="З морепродуктами">
+        </option>
       </datalist>
-      <button class="minus">-</button>
-      <span class="quantityOfPizza">1</span>
       <button class="plus">+</button>
-      
+      <span class="quantityOfPizza">1</span>
+      <button class="minus">-</button>
+      <span class="priceOfPizza">0</span>
     </div>
-    <div class="pizza">
-      <label for="typeOfPizza1">Choose pizza</label>
-      <input type="text" class="typeOfPizza1" list="optionOfPizza">
-      <button class="minus1">-</button>
-      <span class="quantityOfPizza1">1</span>
-      <button class="plus1">+</button>
-    </div>
-    <button class="createOrder" disabled>Ok</button>
-    <div class="price"></div>
+    <button class="createOrder" disabled>Створити Замовлення</button>
   </form>
+  <div class="totalOrder"></div>
+
+  <form class="finalForm">
+
+    <label for="delivery">Самовивіз</label>
+    <input type="radio" name="delivery" >
+    <label for="delivery">Доставка</label>
+    <input type="radio" name="delivery" class="deliveryRadio">
+    <br>
+    <label for="adress">Вкажіть Адрессу</label>
+    <input type="text" name="adress" class="deliveryInput" disabled>
+    <br>
+    <button>Оплатить</button>
+  </form>
+
 </body>
 </html>
