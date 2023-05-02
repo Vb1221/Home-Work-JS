@@ -6,8 +6,8 @@ window.onload = () => {
   let newPizzaBtn = document.querySelector('.newPizza')
 
   let adminData = {
-    login: '1',     // user
-    password: 1  // 123456
+    login: 'user',    
+    password: 123456  
   }
 
   loginForm.onsubmit = () =>{
