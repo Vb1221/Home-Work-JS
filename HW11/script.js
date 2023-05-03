@@ -165,19 +165,23 @@ window.onload = () => {
   orderBtn.onclick = function(){
     orderForm.style.display = 'none'
     newPizzaBtn.style.display = 'none'
-    finalForm.style.display = 'block'
+    finalForm.style.display = 'flex'
   }
 
   let deliveryRadioInput = document.querySelector('.deliveryRadio')
   let adressInput = document.querySelector('.deliveryInput')
+  let nonDelivery = document.querySelector('.notdeliveryRadio')
 
-  deliveryRadioInput.addEventListener('change', function() {
+  adressInput.setAttribute('disabled', 'disabled')
+
+  deliveryRadioInput.addEventListener('click', function() {
     if (this.checked) {
       adressInput.removeAttribute('disabled')
-    } else {
-      adressInput.setAttribute('disabled', 'disabled')
     }
   });
+  nonDelivery.onclick = () => {
+    adressInput.setAttribute('disabled', 'disabled')
+  }
   
   
   }

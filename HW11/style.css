@@ -1,29 +1,214 @@
 
-.newPizza{
-  display: none;
-}
 
-.orderForm{
-  display: none;
-}
-.pizza{
+.loginForm {
   display: flex;
-  width: 30%;
   flex-direction: column;
-  border: 2px solid green;
-  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.createOrder{
-  position: absolute;
-  bottom: 10%;
-  left: 13%;
-  width: 100px;
+.loginForm div {
+  margin-bottom: 20px;
+}
+
+.loginForm label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.loginForm input[type="text"],
+.loginForm input[type="password"] {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.loginForm .submit {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.loginForm .submit:hover {
+  background-color: #0062cc;
+}
+
+.orderForm {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pizza {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid #ccc;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.sizePizza {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.radio {
+  appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio:checked {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+.typeOfPizza {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  border: 2px solid #ccc;
+}
+
+.plus,
+.minus {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.plus:hover,
+.minus:hover {
+  background-color: #ccc;
+}
+
+.quantityOfPizza,
+.priceOfPizza {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 .newPizza{
-  margin: 20px;
-  margin-left: 13%;
-}
-.finalForm{
   display: none;
 }
+
+.newPizza,
+.createOrder {
+  font-size: 1.2rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.createOrder:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.newPizza:hover,
+.createOrder:hover {
+  background-color: #444;
+}
+
+.totalOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.totalOrder p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.totalOrder button {
+  font-size: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.totalOrder button:hover {
+  background-color: #444;
+}
+  /* 3 форма  */
+  .finalForm {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .finalForm label {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  .finalForm input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .finalForm input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+  }
+  
+  .finalForm button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .finalForm button:hover {
+    background-color: #3e8e41;
+  }
+  

@@ -22,7 +22,7 @@
   </form>
   <!--  -->
 
-  <button class="newPizza">Add Pizza</button>
+  
   <form class="orderForm" action="#">
     <div class="pizza">
       <label for="typeOfPizza">Choose pizza</label>
@@ -46,6 +46,8 @@
       <button class="minus">-</button>
       <span class="priceOfPizza">0</span>
     </div>
+    
+    <button class="newPizza">Add Pizza</button>
     <button class="createOrder" disabled>Створити Замовлення</button>
   </form>
   <div class="totalOrder"></div>
@@ -53,7 +55,7 @@
   <form class="finalForm">
 
     <label for="delivery">Самовивіз</label>
-    <input type="radio" name="delivery" >
+    <input type="radio" name="delivery" class="notdeliveryRadio">
     <label for="delivery">Доставка</label>
     <input type="radio" name="delivery" class="deliveryRadio">
     <br>
