@@ -74,13 +74,6 @@ window.onload = () => {
     }
   }
   
-  // inputPizza.onchange = function(){
-  //   for (let i = 0; i < variablesOfPizza.length; i++){
-  //     if(this.value == variablesOfPizza[i].name){
-  //       priceSpan.innerHTML = `${variablesOfPizza[i][clickSize]} грн`
-  //     }
-  //   }
-  //   }
   function disabledBtn(){
     if (totalSum > 0){
       orderBtn.removeAttribute('disabled')
@@ -115,6 +108,16 @@ window.onload = () => {
       pizzaSize = 'Велика'
     }
 
+    let pizzaName = inputPizza.value
+
+    let pizza = variablesOfPizza.find(pizza => pizza.name == pizzaName)
+
+    if(!pizza){
+      alert (`Піцци ${pizzaName} не існує`)
+      inputPizza.value = ''
+      return
+    }
+
     totalSum = totalSum + Number(priceSpan.innerHTML)
     let p = document.createElement('p')
     let removeBtn = document.createElement('button')
@@ -136,7 +139,6 @@ window.onload = () => {
       totalSumP.innerHTML = `До сплати ${totalSum} грн`
       p.remove()
       removeBtn.remove()
-      // console.log(arrPrice)
       disabledBtn()
     }
 
@@ -185,5 +187,3 @@ window.onload = () => {
   
   
   }
-
-
