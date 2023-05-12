@@ -2,6 +2,7 @@ window.onload = () =>{
 
   let allPlanets = [];
   let body = document.querySelector('body');
+  body.style.backgroundColor = '#000000'
   let sizeBtn = document.querySelector('.sizeFilter');
   let sizeBtn1 = document.querySelector('.sizeFilter1');
   let populationBtn = document.querySelector('.populationFilter')
@@ -10,13 +11,36 @@ window.onload = () =>{
   
   let url = 'https://swapi.dev/api/planets/';
   
+  // function fetchAllData(url) {
+  //   let planetsContainer = document.createElement('div');
+  //   planetsContainer.className = 'container';
+  
+  //   fetch(url)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       allPlanets.push(...data.results);
+  
+  //       if (data.next) {
+  //         fetchAllData(data.next);
+  //       } else {
+  //         displayPlanets(allPlanets);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log('Виникла помилка:', error);
+  //     });
+  // }
+
   function fetchAllData(url) {
     let planetsContainer = document.createElement('div');
     planetsContainer.className = 'container';
   
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+  
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 400) {
+        let data = JSON.parse(xhr.responseText);
         allPlanets.push(...data.results);
   
         if (data.next) {
@@ -24,10 +48,16 @@ window.onload = () =>{
         } else {
           displayPlanets(allPlanets);
         }
-      })
-      .catch(error => {
-        console.log('Виникла помилка:', error);
-      });
+      } else {
+        console.log('Помилка при отриманні даних');
+      }
+    };
+  
+    xhr.onerror = function () {
+      console.log('Виникла помилка при виконанні запиту');
+    };
+  
+    xhr.send();
   }
   
   function displayPlanets(planets) {
@@ -43,7 +73,7 @@ window.onload = () =>{
     body.appendChild(planetsContainer);
   
 
-    sizeBtn.onclick = () => { //populationBtn
+    sizeBtn.onclick = () => { 
       planetsContainer.remove();
       allPlanets.sort((a, b) => {
         if (a.diameter === 'unknown') {
